@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ma Todo List{% endblock %}
+
+{% block body %}
+<div style="max-width: 700px; margin: 40px auto; font-family: sans-serif;">
+    <h1>📝 Ma Todo List</h1>
+
+    <form method="POST" action="{{ path('task_add') }}">
+        <input type="text" name="title" required placeholder="La tache">
+        <button type="submit"></button>
+    </form>
+    {% if tasks %}
+    <ul>
+        {% for task in tasks %}
+        <li>
+            <form method="post" action="{{ path('task_toogle'), {id: task.id}) }} style="display: inline;""
+            {{ task.title }}</li>
+       {% endfor %}
+    </ul>
+    {% else %}
+        <p> Ajouter des nouvelles taches pour commencer</p>
+    {% endif %}
+
+
+    <ul>
+        {# C'est ici que tu fais la boucle #}
+    </ul>
+</div>
+{% endblock %}
