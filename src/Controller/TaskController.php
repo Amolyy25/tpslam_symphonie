@@ -39,7 +39,7 @@ final class TaskController extends AbstractController
     return $this->redirectToRoute('task_index');
     }
 
-    #[Route('/toogle/{id}', name:'task_toogle', methods: ['POST'])]
+    #[Route('/toogle/{id}', name:'task_toggle', methods: ['POST'])]
     public function toggle(Task $task, EntityManagerInterface $entityManagerInterface): Response
     {
         if ($task->isDone()) {
@@ -47,7 +47,7 @@ final class TaskController extends AbstractController
         } else {
             $task->setIsDone(true);
         }
-    $entityManagerInterface->flush();
+        $entityManagerInterface->flush();
 
         return $this->redirectToRoute('task_index');
     }

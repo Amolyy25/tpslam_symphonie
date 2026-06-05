@@ -14,9 +14,18 @@
     <ul>
         {% for task in tasks %}
         <li>
-            <form method="post" action="{{ path('task_toogle'), {id: task.id}) }} style="display: inline;""
-            {{ task.title }}</li>
-       {% endfor %}
+            <form method="post" action="{{ path('task_toggle', {id: task.id}) }}" style="display: inline;">
+                <button type="submit">
+                    {{ task.isDone ? '✓' : '○' }}
+                </button>
+            </form>
+        {% if task.isDone %}
+            <s>{{ task.title }}</s>
+        {% else %}
+             {{ task.title }}
+        {% endif %}
+        </li>
+    {% endfor %}
     </ul>
     {% else %}
         <p> Ajouter des nouvelles taches pour commencer</p>
